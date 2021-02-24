@@ -10,7 +10,7 @@ const Home = (props) => {
   return(
     <div className="products">
       <Head>
-        <title>Home Paging</title>
+        <title>Home page</title>
       </Head>
 
       {
