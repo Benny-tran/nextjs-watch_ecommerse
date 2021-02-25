@@ -16,11 +16,12 @@ a {
 }
 
 img{
-  object-fit: cover
+  object-fit: cover;
+  object-position: 0 30%;
 }
 
 /*----------- Loading ------------- */
 @import url("./loading.css");
 
-/*----------- Loading ------------- */
+/*----------- Products ------------- */
 @import url("./product.css");
