@@ -7,7 +7,7 @@ import Cookie from 'js-cookie'
 function NavBar() {
     const router = useRouter()
     const {state, dispatch} = useContext(DataContext)
-    const {auth} = state
+    const {auth, cart} = state
 
     const isActive = (r) => {
         if(r === router.pathname){
@@ -37,7 +37,9 @@ function NavBar() {
                         }} />{auth.user.name}
                     </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a className="dropdown-item" href="#">Profile</a>
+                    <Link href="/profile">
+                        <a className="dropdown-item" >Profile</a>
+                    </Link>
                     <button className="dropdown-item" onClick={handleLogout}>Logout</button>
                 </div>
         </li>
@@ -56,7 +58,17 @@ function NavBar() {
                             <li className="nav-item">
                                 <Link href="/cart">
                                 <a className={"nav-link" + isActive('/cart')}>
-                                    <i className="fas fa-shopping-cart position-relative" aria-hidden="true"></i> Cart</a>
+                                    <i className="fas fa-shopping-cart position-relative" aria-hidden="true">
+                                        <span className="position-absolute"
+                                        style={{padding: '3px 6px',
+                                                background: '#ed143dc2',
+                                                borderRadius: '50%',
+                                                top:'-10px',
+                                                right:'-10px',
+                                                color:'white',
+                                                fontSize: '14px'}}>{cart.length}</span>
+                                        </i> Cart
+                                    </a>
                                 </Link>
                             </li>
                         

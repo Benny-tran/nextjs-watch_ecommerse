@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Head from 'next/head'
 import {getData} from '../../utils/fetchData'
+import { DataContext } from '../../store/GlobalState'
+import { addToCart } from '../../store/Actions'
 
 const DetailProduct = (props) => {
     const[product] = useState(props.product)
     const [tab, setTab] = useState(0)
+
+    const {state, dispatch} = useContext(DataContext)
+    const { cart } = state
 
     const isActive = (index) => {
         if(tab === index) return "active";
@@ -41,15 +46,17 @@ const DetailProduct = (props) => {
                 <div>
                     {
                         product.inStock > 0
-                        ? <h6 className="text-danger">In Stock: {product.inStock}</h6>
+                        ? <h6 className="text-success">In Stock</h6>
                         : <h6 className="text-danger">Out Stock</h6>
                     }
-                    <h6 className="text-danger">Sold: {product.sold}</h6>
+                    <h6 className="text-success">Sold: {product.sold}</h6>
                 </div>
                     <div className="my-2">{product.description}</div>
                     <div className="my-2">{product.content}</div>
 
-                    <button type="button" className="btn btn-dark d-block my-3 px-5">Buy</button>
+                    <button type="button" className="btn btn-dark d-block my-3 px-5"
+                    onClick={() => dispatch(addToCart(product,cart))}
+                    >Buy</button>
             </div>
         </div>
     )
