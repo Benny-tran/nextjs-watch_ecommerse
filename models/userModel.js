@@ -1,8 +1,7 @@
 //User model
-import mongoose from 'mongoose';
-const {Schema} = mongoose;
+import mongoose from 'mongoose'
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         //required mean user cannot pass this value if it didnot filled
@@ -31,7 +30,7 @@ const userSchema = new Schema({
     },
     avatar: {
         type: String,
-        default: 'https://res.cloudinary.com/ddb4viusw/image/upload/v1613630409/Circle-icons-profile_ebfdqd.svg'
+        default: 'https://res.cloudinary.com/bennytran/image/upload/v1615517539/nextjs_media/Profile_avatar_placeholder_large_picjlv.png'
     } 
 },
 {   

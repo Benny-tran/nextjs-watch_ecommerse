@@ -5,6 +5,7 @@ import { DataContext } from '../../store/GlobalState'
 import { addToCart } from '../../store/Actions'
 
 const DetailProduct = (props) => {
+
     const[product] = useState(props.product)
     const [tab, setTab] = useState(0)
 
@@ -67,9 +68,9 @@ export async function getServerSideProps({params: {id}}) {
     const res = await getData(`product/${id}`)
     // server side rendering
     return {
-      props: { product: res.product}, // will be passed to the page component as props
+      props: { product: res.product }, // will be passed to the page component as props
     }
-  }
+}
 
 
 export default DetailProduct

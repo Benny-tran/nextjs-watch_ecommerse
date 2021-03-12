@@ -1,7 +1,6 @@
-import mongoose from 'mongoose';
-const {Schema} = mongoose;
+import mongoose from 'mongoose'
 
-const orderSchema = new Schema({
+const orderSchema = new mongoose.Schema({
     user: {
         type: mongoose.Types.ObjectId,
         ref: 'user'
@@ -10,10 +9,17 @@ const orderSchema = new Schema({
     mobile: String,
     cart: Array,
     total: Number,
+    paymentId: String,
+    method: String,
     delivered: {
         type: Boolean,
         default: false
-    }
+    },
+    paid: {
+        type: Boolean,
+        default: false
+    },
+    dateOfPayment: Date
 }, {
     timestamps: true
 })

@@ -26,23 +26,44 @@ function NavBar() {
         
     }
 
+    const adminRouter = () => {
+        return(
+            <>
+            <Link href="/users">
+                <a className="dropdown-item">Users</a>
+            </Link>
+            <Link href="/create">
+                <a className="dropdown-item">Products</a>
+            </Link>
+            <Link href="/categories">
+                <a className="dropdown-item">Categories</a>
+            </Link>
+            </>
+        )
+    }
+
     const loggedRouter = () => {
         return(
             <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src={auth.user.avatar} alt={auth.user.avatar} 
-                        style={{
-                            borderRadius: '50%', width: '30px', height: '30px',
-                            transform: 'translateY(-3px)', marginRight: '3px'
-                        }} />{auth.user.name}
-                    </a>
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src={auth.user.avatar} alt={auth.user.avatar} 
+                    style={{
+                        borderRadius: '50%', width: '30px', height: '30px',
+                        transform: 'translateY(-3px)', marginRight: '3px'
+                    }} /> {auth.user.name}
+                </a>
+
                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <Link href="/profile">
-                        <a className="dropdown-item" >Profile</a>
+                        <a className="dropdown-item">Profile</a>
                     </Link>
+                    {
+                        auth.user.role === 'admin' && adminRouter()
+                    }
+                    <div className="dropdown-divider"></div>
                     <button className="dropdown-item" onClick={handleLogout}>Logout</button>
                 </div>
-        </li>
+            </li>
         )
     }
     return(
@@ -66,7 +87,10 @@ function NavBar() {
                                                 top:'-10px',
                                                 right:'-10px',
                                                 color:'white',
-                                                fontSize: '14px'}}>{cart.length}</span>
+                                                fontSize: '14px'}}>
+                                                    
+                                                    {cart.length}
+                                                </span>
                                         </i> Cart
                                     </a>
                                 </Link>
@@ -75,7 +99,8 @@ function NavBar() {
                     
                     {
                         Object.keys(auth).length ===0 
-                        ? <li className="nav-item">
+                        ? 
+                        <li className="nav-item">
                             <Link href="/signin">
                                 <a className={"nav-link" + isActive('/signin')}>
                                     <i className="fas fa-user" aria-hidden="true"></i> Sign in

@@ -25,7 +25,6 @@
     background: #fff8;
     text-align: center;
     font-weight: 400;
-    text-transform: 400;
     color: rgb(255, 140, 45);
     transition: 0.3 ease-in-out;
 }
@@ -36,19 +35,13 @@
 
 .profile_page #file_up{
     position: absolute;
-    top: 0;
+    top:0;
     left: 0;
     width: 100%;
     height: 100%;
     opacity: 0;
     cursor: pointer;
 }
-
 ::-webkit-file-upload-button{
     cursor: pointer;
 }
-
-
-
-
-
